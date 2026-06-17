@@ -11,7 +11,7 @@ class UserInput(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"msg": "백엔드 서버 켜짐!"}
+    return {"msg": "백엔드 서버 켜짐"}
 
 @app.post("/recommend")
 async def get_recommendation(user_input: UserInput):
