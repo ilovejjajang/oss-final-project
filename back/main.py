@@ -17,7 +17,7 @@ async def root():
 async def get_recommendation(user_input: UserInput):
     print(f">> [로그] 입력값: {user_input.spend_reason}, {user_input.worldview}, {user_input.budget}")
 
-    target = "스팀(Steam) 게임"
+    target = "스팀 게임"
     reason = "다양한 장르의 게임을 접해보는 것을 추천합니다."
 
     if user_input.spend_reason == "캐릭터 외모 (디자인 및 일러스트)":
