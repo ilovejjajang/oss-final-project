@@ -11,45 +11,45 @@ class UserInput(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"msg": "백엔드 서버 켜짐"}
+    return {"msg": "백엔드 서버 작동 중"}
 
 @app.post("/recommend")
 async def get_recommendation(user_input: UserInput):
-    print(f">> [로그] 입력값: 목적={user_input.spend_reason}, 세계관={user_input.worldview}, 예산={user_input.budget}")
+    print(f">> [로그] 입력값: {user_input.spend_reason}, {user_input.worldview}, {user_input.budget}")
 
-    target = "스팀(Steam) 연쇄할인마"
-    reason = "일단 스팀 세일할 때 이것저것 사보는 걸 추천합니다."
+    target = "스팀(Steam) 게임"
+    reason = "다양한 장르의 게임을 접해보는 것을 추천합니다."
 
-    if user_input.spend_reason == "캐릭터 외모 (내 최애가 최고야)":
+    if user_input.spend_reason == "캐릭터 외모 (디자인 및 일러스트)":
         if user_input.worldview == "판타지":
             target = "원신"
-            reason = "캐릭터 뽑기에 돈 다 털릴 수 있으니 주의하세요. 그래도 예쁘니까 용서됩니다."
-        elif user_input.worldview == "현대물/SF":
+            reason = "매력적인 판타지 세계관과 개성 있는 캐릭터 디자인이 특징입니다."
+        elif user_input.worldview == "현대물 및 SF":
             target = "블루 아카이브"
-            reason = "청춘... 감성... 그리고 가챠. 브금도 좋아서 코딩 과제할 때 노동요로 듣기 좋습니다."
+            reason = "학원물과 밀리터리 요소가 결합된 독특한 감성의 게임입니다."
             
-    elif user_input.spend_reason == "성능/스펙업 (내가 서버 1짱이 되어야 함)":
-        if user_input.budget == "월 10만원 이상 쌉가능":
-            target = "메이플스토리" 
-            reason = "스펙업의 끝판왕. 큐브 몇 번 돌리다 보면 통장이 텅텅 비는 마술을 볼 수 있습니다."
+    elif user_input.spend_reason == "성능 및 스펙업 (경쟁과 성취감)":
+        if user_input.budget == "10만원 이상":
+            target = "메이플스토리"
+            reason = "장비 강화와 성장을 통해 확실한 스펙업의 성취감을 느낄 수 있습니다."
         else:
             target = "리그 오브 레전드 (LoL) 또는 발로란트"
-            reason = "돈 없으면 실력으로 승부합시다. 스킨은 가끔 할인할 때만 사세요."
+            reason = "피지컬과 전략적 판단력으로 경쟁하는 쾌감을 얻을 수 있습니다."
             
-    elif user_input.spend_reason == "스토리/세계관 (몰입감이 중요해)":
+    elif user_input.spend_reason == "스토리 및 세계관 (몰입감)":
         if user_input.worldview == "판타지":
             target = "젤다의 전설 시리즈"
-            reason = "가챠할 돈으로 스위치랑 젤다 사서 방학 내내 하는 게 가성비 최고입니다."
+            reason = "완성도 높은 스토리와 자유도를 바탕으로 깊은 몰입감을 느낄 수 있습니다."
         else:
             target = "사이버펑크 2077"
-            reason = "스토리 뽕맛 하나는 기가 막힙니다. 단점은 컴 사양이 좋아야 돌아감..."
+            reason = "어두우면서도 매력적인 미래 SF 세계관을 체험할 수 있습니다."
             
     else:
         random_targets = ["명조: 워더링 웨이브", "붕괴: 스타레일", "승리의 여신: 니케"]
         target = random.choice(random_targets)
-        reason = "조건에 딱 맞는 게 없어서 요즘 인기 있는 겜 중에 랜덤으로 돌렸습니다."
+        reason = "최근 유저들 사이에서 좋은 평가를 받고 있는 서브컬처 게임을 추천합니다."
 
-    print(f">> [로그] 최종 추천: {target}")
+    print(f">> [로그] 추천 결과: {target}")
 
     return {
         "recommended_target": target,
